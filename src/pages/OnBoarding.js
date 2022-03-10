@@ -61,7 +61,7 @@ const Onboarding = () => {
                 name="gender_identity"
                 value="man"
                 onChange={handleChange}
-                checked={false}
+                checked={true}
               />
               <label htmlFor="man-gender-identity">Men</label>
               <input
@@ -70,7 +70,7 @@ const Onboarding = () => {
                 name="gender_identity"
                 value="woman"
                 onChange={handleChange}
-                checked={false}
+                checked={true}
               />
               <label htmlFor="woman-gender-identity">Women</label>
               <input
@@ -79,7 +79,7 @@ const Onboarding = () => {
                 name="gender_identity"
                 value="more"
                 onChange={handleChange}
-                checked={false}
+                checked={true}
               />
               <label htmlFor="more-gender-identity">Else</label>
             </div>
@@ -89,8 +89,59 @@ const Onboarding = () => {
               type="checkbox"
               name="show_gender"
               onChange={handleChange}
-              checked={false}
             />
+            <label>Show Me</label>
+            <div className="multiple-input-container">
+              <input
+                id="man-gender-interest"
+                type="radio"
+                name="gender_interest"
+                value="man"
+                onChange={handleChange}
+                checked={true}
+              />
+              <label htmlFor="man-gender-interest">Men</label>
+              <input
+                id="woman-gender-interest"
+                type="radio"
+                name="gender_interest"
+                value="woman"
+                onChange={handleChange}
+                checked={true}
+              />
+              <label htmlFor="woman-gender-interest">Women</label>
+              <input
+                id="everyone-gender-interest"
+                type="radio"
+                name="gender_interest"
+                value="everyone"
+                onChange={handleChange}
+                checked={true}
+              />
+              <label htmlFor="more-gender-interest">Both</label>
+            </div>
+            <label htmlFor="about">About Me</label>
+            <input
+              id="about"
+              type="text"
+              name="about"
+              required={true}
+              placeholder="I like dogs..."
+              value={""}
+              onChange={handleChange}
+            />
+            <input type="submit" />
+          </section>
+          <section>
+            <label htmlFor="url">Profile Photo</label>
+            <input
+              type="url"
+              name="url"
+              id="url"
+              onChange={handleChange}
+              required={true}
+            />
+            <div className="photo-container"></div>
           </section>
         </form>
       </div>
