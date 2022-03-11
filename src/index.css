@@ -120,6 +120,8 @@ h2 {
 
 .onboarding form input[type="radio"]:checked + label {
   border: solid 2px rgb(226, 115, 155);
+  background-color: rgb(226, 115, 155);
+  color: #fff;
 }
 
 .onboarding form input[type="submit"]:hover {
@@ -128,4 +130,9 @@ h2 {
 
 .onboarding form input[type="submit"]:active {
   background-color: rgb(226, 115, 155);
+}
+
+.onboarding form .photo-container img {
+  width: 100%;
+  padding: 0;
 }
