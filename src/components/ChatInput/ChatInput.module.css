@@ -1,0 +1,23 @@
+.input {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  color: rgb(255, 255, 255);
+  background-color: #fe3072;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: solid 2px rgb(255, 255, 255);
+  margin: 15px 6px 6px;
+}
+
+.btn:hover {
+  background: rgb(255, 255, 255);
+  color: #fe3072;
+  border-color: #fe3072;
+}

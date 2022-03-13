@@ -1,0 +1,27 @@
+.header {
+  background: linear-gradient(45deg, #fe3072, #ff5948);
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile,
+.icon {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  color: rgb(255, 255, 255);
+}
+
+.image_container {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.image_container img {
+  width: 100%;
+}

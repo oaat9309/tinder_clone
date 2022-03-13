@@ -1,0 +1,20 @@
+.container {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 30%;
+  text-align: left;
+}
+
+.option {
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border-bottom: solid 4px rgba(243, 33, 33);
+  font-size: 20px;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 0;
+}
+
+.option:disabled {
+  border-bottom: solid 4px grey;
+}
