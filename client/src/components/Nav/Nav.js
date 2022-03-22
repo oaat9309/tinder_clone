@@ -6,7 +6,7 @@ const Nav = ({ setShowModal, showModal, setIsSignUp }) => {
     setShowModal(true);
     setIsSignUp(false);
   };
-  const authToken = true;
+  const authToken = false;
   return (
     <nav>
       <div className="container">
