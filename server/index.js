@@ -97,6 +97,33 @@ app.get("/user", async (req, res) => {
   }
 });
 
+app.get("/users", async (req, res) => {
+  const client = new MongoClient(uri);
+  const userIds = JSON.parse(req.query.userIds);
+  console.log(userIds);
+
+  try {
+    await client.connect();
+    const database = client.db("app-data");
+    const users = database.collection("users");
+
+    const pipeline = [
+      {
+        $match: {
+          user_id: {
+            $in: userIds,
+          },
+        },
+      },
+    ];
+    const foundeUsers = await users.aggregate(pipeline).toArray();
+    console.log(foundeUsers);
+    res.send(foundeUsers);
+  } finally {
+    await client.close();
+  }
+});
+
 app.get("/gendered-users", async (req, res) => {
   const client = new MongoClient(uri);
   const gender = req.query.gender;
@@ -142,6 +169,25 @@ app.put("/user", async (req, res) => {
     };
     const insertedUser = await users.updateOne(query, updateDocument);
     res.send(insertedUser);
+  } finally {
+    await client.close();
+  }
+});
+
+app.put("/addmatch", async (req, res) => {
+  const client = new MongoClient(uri);
+  const { userId, matchedUserId } = req.body;
+  try {
+    await client.connect();
+    const database = client.db("app-data");
+    const users = database.collection("users");
+
+    const query = { user_id: userId };
+    const updateDocument = {
+      $push: { matches: { user_id: matchedUserId } },
+    };
+    const user = await users.updateOne(query, updateDocument);
+    res.send(user);
   } finally {
     await client.close();
   }
