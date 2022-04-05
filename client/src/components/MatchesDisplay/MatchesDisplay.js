@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./MatchesDisplay.module.css";
 
-const MatchesDisplay = ({ matches }) => {
+const MatchesDisplay = ({ matches, setClickedUser }) => {
   const [matchedProfile, setMatchedProfile] = useState(null);
 
   const matchedUsesIds = matches.map(({ user_id }) => user_id);
@@ -22,12 +22,14 @@ const MatchesDisplay = ({ matches }) => {
     getMatches();
   }, []);
 
-  console.log(matchedProfile);
-
   return (
     <div className={styles.display}>
       {matchedProfile?.map((match, _index) => {
-        <div key={_index} className="match-card">
+        <div
+          key={_index}
+          className="match-card"
+          onClick={() => setClickedUser(match)}
+        >
           <div className="img-container">
             <img src={match?.url} alt={match?.first_name + " profile"} />
           </div>
