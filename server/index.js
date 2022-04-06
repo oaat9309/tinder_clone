@@ -4,10 +4,9 @@ const { v4: uuidv4 } = require("uuid");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 
-const uri =
-  "mongodb+srv://kite1993:parkchulgu@cluster0.7abyo.mongodb.net/Cluster0?retryWrites=true&w=majority";
-
+const uri = process.env.URI;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -208,6 +207,20 @@ app.get("/messages", async (req, res) => {
 
     const foundMessages = await messages.find(query).toArray();
     res.send(foundMessages);
+  } finally {
+    await client.close();
+  }
+});
+
+app.post("/message", async (req, res) => {
+  const client = new MongoClient(uri);
+  const message = req.body.message;
+  try {
+    await client.connect();
+    const database = client.db("app-data");
+    const messages = database.collection("messages");
+    const insertedMessage = await messages.insertOne(message);
+    res.send(insertedMessage);
   } finally {
     await client.close();
   }

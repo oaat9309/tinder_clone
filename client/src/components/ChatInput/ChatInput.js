@@ -1,8 +1,34 @@
 import styles from "./ChatInput.module.css";
 import { useState } from "react";
+import axios from "axios";
 
-const ChatInput = () => {
-  const [textArea, setTextArea] = useState(null);
+const ChatInput = ({
+  user,
+  clickedUser,
+  getUsersMessages,
+  getClickedUsersMessages,
+}) => {
+  const [textArea, setTextArea] = useState("");
+  const userId = user?.user_id;
+  const clickedUserId = clickedUser?.user_id;
+
+  const addMessage = async () => {
+    const message = {
+      timestamp: new Date().toISOString(),
+      from_userId: userId,
+      to_userId: clickedUserId,
+      message: textArea,
+    };
+    try {
+      await axios.post("http://localhost:8000/message", { message });
+      getUsersMessages();
+      getClickedUsersMessages();
+      setTextArea("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className={styles.input}>
       <textarea
@@ -11,7 +37,9 @@ const ChatInput = () => {
           setTextArea(e.target.value);
         }}
       />
-      <button className={styles.btn}>Submit</button>
+      <button className={styles.btn} onClick={addMessage}>
+        Submit
+      </button>
     </div>
   );
 };

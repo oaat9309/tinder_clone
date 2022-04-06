@@ -1,12 +1,12 @@
 import LOGO from "../../images/logo.png";
 import "./Nav.module.css";
 
-const Nav = ({ setShowModal, showModal, setIsSignUp }) => {
+const Nav = ({ authToken, setShowModal, showModal, setIsSignUp }) => {
   const handleClick = () => {
     setShowModal(true);
     setIsSignUp(false);
   };
-  const authToken = false;
+
   return (
     <nav>
       <div className="container">

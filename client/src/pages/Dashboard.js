@@ -35,8 +35,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser();
-    getGenderedUsers();
-  }, [user, genderedUsers]);
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      getGenderedUsers();
+    }
+  }, [user]);
 
   const [lastDirection, setLastDirection] = useState();
 
@@ -51,8 +56,6 @@ const Dashboard = () => {
       console.log(err);
     }
   };
-
-  console.log(user);
 
   const swiped = (direction, swipedUserId) => {
     if (direction === "right") {
@@ -83,7 +86,7 @@ const Dashboard = () => {
               {filteredGenderedUsers?.map((genderedUser) => (
                 <TinderCard
                   className="swipe"
-                  key={genderedUser.first_name}
+                  key={genderedUser.user_id}
                   onSwipe={(dir) => swiped(dir, genderedUser.user_id)}
                   onCardLeftScreen={() => outOfFrame(genderedUser.first_name)}
                 >
